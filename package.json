@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "lint": "standard"
+    "lint": "standard",
+    "rm:cache": "jest --clearCache",
+    "test": "npm run rm:cache && jest --detectOpenHandles"
   },
   "author": "Jesús Castillo",
   "license": "ISC",
@@ -18,6 +20,21 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "nanoid": "^3.1.10",
+    "jest": "^26.1.0",
+    "supertest": "^4.0.2"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
