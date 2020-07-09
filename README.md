@@ -21,6 +21,12 @@ or
 yarn start
 ```
 
+## Running project
+In app
+```
+node index.js
+```
+
 ## Running the tests
 ```
 npm run test
@@ -30,7 +36,7 @@ npm run test
 - ### Get all Candidates
 Url
 ```
-/
+/candidates
 ```
 Example
 ```
