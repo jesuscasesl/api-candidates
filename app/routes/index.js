@@ -10,4 +10,9 @@ router.get('/search',
   require('./candidateBySkills')
 )
 
+router.post('/',
+  require('../middlewares/newCandidate'),
+  require('./newCandidate')
+)
+
 module.exports = router

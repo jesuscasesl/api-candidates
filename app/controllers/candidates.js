@@ -1,5 +1,4 @@
 const CandidatesModel = require('../models/candidates')
-
 const utils = require('../utils')
 
 function isBestCandidate (numSkillsCandidate, numSkillForBestCandidate = 0) {
@@ -54,8 +53,13 @@ CandidatesController.search = (skills) => {
 
         indexCandidate += 1
       } while (!isEnd(countSkillsForCandidates, skillsSearched.length, indexCandidate, ordenCandidates.length))
+
       return bestCandidate
     })
+}
+
+CandidatesController.add = ({ name, skills }) => {
+  return CandidatesModel.newCandidate({ name, skills })
 }
 
 module.exports = CandidatesController

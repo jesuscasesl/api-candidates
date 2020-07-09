@@ -1,10 +1,13 @@
 const express = require('express')
 
 const config = require('./config')
+const settings = require('./settings')
 
 const router = require('./app/routes')
 
 const app = express()
+
+settings(app)
 
 app.use('/candidates', router)
 
