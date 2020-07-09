@@ -19,6 +19,11 @@ const response = {
   }
 }
 
+function order (list) {
+  return list.sort((a, b) => b.skills.length - a.skills.length)
+}
+
 module.exports = {
-  response
+  response,
+  order
 }
