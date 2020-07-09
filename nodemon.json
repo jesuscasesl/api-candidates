@@ -6,7 +6,8 @@
   ],
   "watch": [
     "app",
-    "./*.js"
+    "./*.js",
+    "./swagger.json"
   ],
   "ext": "js,json"
 }

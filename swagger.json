@@ -1,0 +1,185 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "A Api with NodeJs",
+    "version": "1.0.0",
+    "title": "Api Candidates"
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "candidates",
+      "description": "Everything about our Candidates"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/candidates": {
+      "get": {
+        "tags": [
+          "candidates"
+        ],
+        "summary": "Return a list od candidates",
+        "description": "You Can get all candidates",
+        "operationId": "GetAllCandidates",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "sucess",
+            "schema": {
+              "$ref": "#/definitions/GetAllCandidates"
+            }
+          },
+          "400": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "candidates"
+        ],
+        "summary": "add new candidate",
+        "description": "You Can get all candidates",
+        "operationId": "NewCandidate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Add new candidate",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Candidate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "sucess"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Bad Request - Body empty, Name is required, Skills are required, Skills must to be an array"
+          }
+        }
+      }
+    },
+    "/candidates/search": {
+      "get": {
+        "tags": [
+          "candidates"
+        ],
+        "summary": "Return the best candidate",
+        "description": "You Can get the best candidate",
+        "operationId": "bestCandidate",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "skills",
+            "in": "query",
+            "description": "skills for candidates",
+            "required": true,
+            "type": "string",
+            "items": {
+              "type": "string",
+              "enum": [
+                "skills"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "schema": {
+              "$ref": "#/definitions/Candidate"
+            }
+          },
+          "400": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Bad Request - Not Skils"
+          },
+          "404": {
+            "description": "There are not candidates for this search for skills"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetAllCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "example": [
+        {
+          "id": "123456789",
+          "name": "jesus",
+          "skills": [
+            "js",
+            "php",
+            "express"
+          ]
+        }
+      ]
+    },
+    "Candidate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "example": {
+        "id": "123456789",
+        "name": "jesus",
+        "skills": [
+          "js",
+          "php",
+          "express"
+        ]
+      }
+    }
+  }
+}
